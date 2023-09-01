@@ -22,7 +22,15 @@ namespace fashionFrontier.Controllers
 
         public IActionResult Explore()
         {
-            return View();
+            var products = _dbContext.Products.ToList();
+            return View(products);
+        }
+
+        //[Route("Products/Index/{categoryName}")]
+        public IActionResult Explore(string categoryName)
+        {
+            var products = _dbContext.Products.ToList();
+            return View(products);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
