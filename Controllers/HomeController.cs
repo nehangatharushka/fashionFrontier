@@ -23,13 +23,15 @@ namespace fashionFrontier.Controllers
         public IActionResult Explore()
         {
             var products = _dbContext.Products.ToList();
+            ViewBag.CategoryName = "All Trends";
             return View(products);
         }
 
-        //[Route("Products/Index/{categoryName}")]
+        [Route("Home/Explore/{categoryName}")]
         public IActionResult Explore(string categoryName)
         {
-            var products = _dbContext.Products.ToList();
+            var products = _dbContext.Products.Where(x=>x.Category == categoryName).ToList();
+            ViewBag.CategoryName = categoryName;
             return View(products);
         }
 
